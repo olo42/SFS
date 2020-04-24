@@ -1,0 +1,15 @@
+{
+    "editor.tabSize": 2,
+    "files.exclude": {
+        "**/.editorconfig": true,
+        "**/.vscode": true,
+        "**/*.csproj": true,
+        "**/bin": true,
+        "**/obj": true,
+        "**/.gitattributes" : true,
+        "**/.gitignore" : true
+    },
+    "editor.fontFamily": "Source Code Pro, Consolas, 'Courier New', monospace",
+    "editor.minimap.maxColumn": 80,
+    "editor.fontSize": 12
+}
