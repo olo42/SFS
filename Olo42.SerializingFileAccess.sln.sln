@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializingFileAccess.Abstractions", "SerializingFileAccess.Abstractions\SerializingFileAccess.Abstractions.csproj", "{2BF6873C-0C41-4B5C-83CE-34D12431E6DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializingFileAccess.Abstractions", "SerializingFileAccess.Abstractions\Olo42.SerializingFileAccess.Abstractions.csproj", "{2BF6873C-0C41-4B5C-83CE-34D12431E6DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
