@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializingFileAccess.Abstr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileAccess.Tests", "SerializingFileAccess.Tests\Olo42.SerializingFileAccess.Tests.csproj", "{8E4C1FE7-56B4-4A73-AEFC-7DC50EF1591F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileAccess", "SerializingFileAccess\Olo42.SerializingFileAccess.csproj", "{4259613A-42F6-40EA-A750-5832334D6E48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{8E4C1FE7-56B4-4A73-AEFC-7DC50EF1591F}.Release|x64.Build.0 = Release|Any CPU
 		{8E4C1FE7-56B4-4A73-AEFC-7DC50EF1591F}.Release|x86.ActiveCfg = Release|Any CPU
 		{8E4C1FE7-56B4-4A73-AEFC-7DC50EF1591F}.Release|x86.Build.0 = Release|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Debug|x64.Build.0 = Debug|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Debug|x86.Build.0 = Debug|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Release|x64.ActiveCfg = Release|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Release|x64.Build.0 = Release|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Release|x86.ActiveCfg = Release|Any CPU
+		{4259613A-42F6-40EA-A750-5832334D6E48}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
