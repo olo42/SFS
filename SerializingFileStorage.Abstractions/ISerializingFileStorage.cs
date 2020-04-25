@@ -1,16 +1,20 @@
 ﻿// Copyright (c) Oliver Appel. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-namespace Olo42.SerializingFileAccess.Abstractions
+using System.Collections.Generic;
+
+namespace Olo42.SerializingFileStorage.Abstractions
 {
-  public interface ISerializingFileAccess<T>
+  public interface ISerializingFileStorage<T>
   {
     void Create(T obj);
 
-    T Read();
+    IEnumerable<T> Read();
+
+    T Read(string id);
 
     void Update(T obj);
 
-    void Delete();
+    void Delete(string id);
   }
 }

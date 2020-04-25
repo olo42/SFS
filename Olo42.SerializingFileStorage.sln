@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializingFileAccess.Abstractions", "SerializingFileAccess.Abstractions\Olo42.SerializingFileAccess.Abstractions.csproj", "{2BF6873C-0C41-4B5C-83CE-34D12431E6DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializingFileStorage.Abstractions", "SerializingFileStorage.Abstractions\Olo42.SerializingFileStorage.Abstractions.csproj", "{2BF6873C-0C41-4B5C-83CE-34D12431E6DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileAccess.Tests", "SerializingFileAccess.Tests\Olo42.SerializingFileAccess.Tests.csproj", "{8E4C1FE7-56B4-4A73-AEFC-7DC50EF1591F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.Tests", "SerializingFileStorage.Tests\Olo42.SerializingFileStorage.Tests.csproj", "{8E4C1FE7-56B4-4A73-AEFC-7DC50EF1591F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileAccess", "SerializingFileAccess\Olo42.SerializingFileAccess.csproj", "{4259613A-42F6-40EA-A750-5832334D6E48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage", "SerializingFileStorage\Olo42.SerializingFileStorage.csproj", "{4259613A-42F6-40EA-A750-5832334D6E48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

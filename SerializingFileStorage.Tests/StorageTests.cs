@@ -3,9 +3,9 @@
 
 using NUnit.Framework;
 
-namespace Olo42.SerializingFileAccess.Tests
+namespace Olo42.SerializingFileStorage.Tests
 {
-    public class Tests
+    public class StorageTests
     {
         [SetUp]
         public void Setup()
