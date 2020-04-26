@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 
 namespace Olo42.SerializingFileStorage.Abstractions
 {
-  public interface IFileProvider
+  public interface IFileAccessProvider
   {
     Task<string> GetPhysicalPath();
 
     Task Write(string content);
 
     Task<string> Read();
+
+    Task Delete();
   }
 }
