@@ -10,27 +10,27 @@ namespace Olo42.SerializingFileStorage
   public class Storage<T> : ISerializingFileStorage<T>
   {
     private readonly ISerialisationProvider<T> serialisationProvider;
-    private readonly IFileProvider fileProvider;
+    private readonly IFileAccessProvider fileAccessProvider;
     private readonly ICryptoProvider cryptoProvider;
 
     public Storage(
       ISerialisationProvider<T> serialisationProvider,
-      IFileProvider fileProvider,
+      IFileAccessProvider fileAccessProvider,
       ICryptoProvider cryptoProvider = null)
     {
       this.serialisationProvider =
         serialisationProvider ??
         throw new ArgumentNullException(nameof(serialisationProvider));
 
-      this.fileProvider =
-        fileProvider ?? throw new ArgumentNullException(nameof(fileProvider));
+      this.fileAccessProvider =
+        fileAccessProvider ?? throw new ArgumentNullException(nameof(fileAccessProvider));
 
       this.cryptoProvider = cryptoProvider;
     }
 
     public async Task<T> Read()
     {
-      var fileContent = await this.fileProvider.Read();
+      var fileContent = await this.fileAccessProvider.Read();
       if (this.cryptoProvider != null)
       {
         fileContent = await this.cryptoProvider.Decrypt(fileContent);
@@ -47,7 +47,7 @@ namespace Olo42.SerializingFileStorage
         objString = await this.cryptoProvider.Encrypt(objString);
       }
 
-      await this.fileProvider.Write(objString);
+      await this.fileAccessProvider.Write(objString);
     }
 
     public Task Delete()

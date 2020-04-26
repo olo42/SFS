@@ -13,7 +13,7 @@ namespace Olo42.SerializingFileStorage.Tests
   {
     #region Fields
     Mock<ISerialisationProvider<TestObject>> serialisationProvider;
-    Mock<IFileProvider> fileProvider;
+    Mock<IFileAccessProvider> fileAccessProvider;
     Mock<ICryptoProvider> cryptoProvider;
     Storage<TestObject> storage;
     string testDirectory;
@@ -24,12 +24,12 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Setup()
     {
       this.serialisationProvider = new Mock<ISerialisationProvider<TestObject>>();
-      this.fileProvider = new Mock<IFileProvider>();
+      this.fileAccessProvider = new Mock<IFileAccessProvider>();
       this.cryptoProvider = new Mock<ICryptoProvider>();
 
       this.storage = new Storage<TestObject>(
         this.serialisationProvider.Object,
-        this.fileProvider.Object,
+        this.fileAccessProvider.Object,
         this.cryptoProvider.Object);
 
       this.testDirectory = Path.Combine(Path.GetTempPath(), "./testdir");
@@ -43,7 +43,7 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Write_Calls_SerialisationProvider_Serialize()
     {
       // Arrange
-      this.fileProvider
+      this.fileAccessProvider
         .Setup(f => f.GetPhysicalPath())
         .Returns(Task.FromResult(this.testFilePath));
       var obj = new TestObject();
@@ -60,7 +60,7 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Write_Calls_FileProvider_Write()
     {
       // Arrange
-      this.fileProvider
+      this.fileAccessProvider
         .Setup(f => f.GetPhysicalPath())
         .Returns(Task.FromResult(this.testFilePath));
       var obj = new TestObject();
@@ -69,7 +69,7 @@ namespace Olo42.SerializingFileStorage.Tests
       this.storage.Write(obj).Wait();
 
       // Assert
-      this.fileProvider
+      this.fileAccessProvider
         .Verify(fp => fp.Write(It.IsAny<string>()), Times.Once);
     }
 
@@ -77,7 +77,7 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Write_Calls_CryptoProvider_Crypt()
     {
       // Arrange
-      this.fileProvider
+      this.fileAccessProvider
         .Setup(f => f.GetPhysicalPath())
         .Returns(Task.FromResult(this.testFilePath));
       var obj = new TestObject();
@@ -94,12 +94,12 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Write_Does_Not_Call_CryptoProvider_Encrypt_If_Provider_Is_Null()
     {
       // Arrange
-      this.fileProvider
+      this.fileAccessProvider
         .Setup(f => f.GetPhysicalPath())
         .Returns(Task.FromResult(this.testFilePath));
       var storage = new Storage<TestObject>(
         this.serialisationProvider.Object,
-        this.fileProvider.Object);
+        this.fileAccessProvider.Object);
 
       var obj = new TestObject();
 
@@ -117,7 +117,7 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Read_Calls_SerialisationProvider_Deserialize()
     {
       // Arrange
-      this.fileProvider
+      this.fileAccessProvider
         .Setup(f => f.GetPhysicalPath())
         .Returns(Task.FromResult(this.testFilePath));
       var obj = new TestObject();
@@ -134,7 +134,7 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Read_Calls_FileProvider_Read()
     {
       // Arrange
-      this.fileProvider
+      this.fileAccessProvider
         .Setup(f => f.GetPhysicalPath())
         .Returns(Task.FromResult(this.testFilePath));
       var obj = new TestObject();
@@ -143,7 +143,7 @@ namespace Olo42.SerializingFileStorage.Tests
       this.storage.Read().Wait();
 
       // Assert
-      this.fileProvider
+      this.fileAccessProvider
         .Verify(f => f.Read(), Times.Once);
     }
 
@@ -151,7 +151,7 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Read_Calls_CryploProvider_Decrypt()
     {
       // Arrange
-      this.fileProvider
+      this.fileAccessProvider
         .Setup(f => f.GetPhysicalPath())
         .Returns(Task.FromResult(this.testFilePath));
       var obj = new TestObject();
@@ -168,12 +168,12 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Read_Does_Not_Call_CryptoProvider_Encrypt_If_Provider_Is_Null()
     {
       // Arrange
-      this.fileProvider
+      this.fileAccessProvider
         .Setup(f => f.GetPhysicalPath())
         .Returns(Task.FromResult(this.testFilePath));
       var storage = new Storage<TestObject>(
         this.serialisationProvider.Object,
-        this.fileProvider.Object);
+        this.fileAccessProvider.Object);
 
       var obj = new TestObject();
 
