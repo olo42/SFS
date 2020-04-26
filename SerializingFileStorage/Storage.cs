@@ -2,34 +2,51 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using Olo42.SerializingFileStorage.Abstractions;
 
 namespace Olo42.SerializingFileStorage
 {
   public class Storage<T> : ISerializingFileStorage<T>
   {
-    public void Create(T obj)
+    private readonly ISerialisationProvider<T> serialisationProvider;
+    private readonly IFileProvider fileProvider;
+    private readonly ICryptoProvider cryptoProvider;
+
+    public Storage(
+      ISerialisationProvider<T> serialisationProvider,
+      IFileProvider fileProvider,
+      ICryptoProvider cryptoProvider = null)
     {
-      throw new NotImplementedException();
+      this.serialisationProvider =
+        serialisationProvider ??
+        throw new ArgumentNullException(nameof(serialisationProvider));
+
+      this.fileProvider =
+        fileProvider ?? throw new ArgumentNullException(nameof(fileProvider));
+
+      this.cryptoProvider = cryptoProvider;
     }
 
-    public void Delete(string id)
+    public Task<T> Read()
     {
-      throw new NotImplementedException();
+      return this.serialisationProvider.Deserialize("test");
+
+
     }
 
-    public IEnumerable<T> Read()
+    public async Task Write(T obj)
     {
-      throw new NotImplementedException();
+      var objString = await this.serialisationProvider.Serialize(obj);
+      if(this.cryptoProvider != null)
+      {
+        objString = await this.cryptoProvider.Encrypt(objString);
+      }
+
+      await this.fileProvider.Write(objString);
     }
 
-    public T Read(string id)
-    {
-      throw new NotImplementedException();
-    }
-
-    public void Update(T obj)
+    public Task Delete()
     {
       throw new NotImplementedException();
     }
