@@ -23,15 +23,18 @@ namespace Olo42.SerializingFileStorage
         throw new ArgumentNullException(nameof(serialisationProvider));
 
       this.fileAccessProvider =
-        fileAccessProvider ?? throw new ArgumentNullException(nameof(fileAccessProvider));
+        fileAccessProvider ?? 
+        throw new ArgumentNullException(nameof(fileAccessProvider));
 
       this.cryptoProvider = cryptoProvider;
     }
 
+    public bool IsCryptoEnabled => this.cryptoProvider != null;
+
     public async Task<T> Read()
     {
       var fileContent = await this.fileAccessProvider.Read();
-      if (this.cryptoProvider != null)
+      if (this.IsCryptoEnabled)
       {
         fileContent = await this.cryptoProvider.Decrypt(fileContent);
       }
@@ -42,7 +45,7 @@ namespace Olo42.SerializingFileStorage
     public async Task Write(T obj)
     {
       var objString = await this.serialisationProvider.Serialize(obj);
-      if (this.cryptoProvider != null)
+      if (this.IsCryptoEnabled)
       {
         objString = await this.cryptoProvider.Encrypt(objString);
       }
@@ -52,7 +55,7 @@ namespace Olo42.SerializingFileStorage
 
     public Task Delete()
     {
-      throw new NotImplementedException();
+      return this.fileAccessProvider.Delete();
     }
   }
 }

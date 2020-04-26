@@ -16,26 +16,21 @@ namespace Olo42.SerializingFileStorage.Tests
     Mock<IFileAccessProvider> fileAccessProvider;
     Mock<ICryptoProvider> cryptoProvider;
     Storage<TestObject> storage;
-    string testDirectory;
-    string testFilePath;
     #endregion
 
     [SetUp]
     public void Setup()
     {
       this.serialisationProvider = new Mock<ISerialisationProvider<TestObject>>();
+
       this.fileAccessProvider = new Mock<IFileAccessProvider>();
+
       this.cryptoProvider = new Mock<ICryptoProvider>();
 
       this.storage = new Storage<TestObject>(
         this.serialisationProvider.Object,
         this.fileAccessProvider.Object,
         this.cryptoProvider.Object);
-
-      this.testDirectory = Path.Combine(Path.GetTempPath(), "./testdir");
-      Directory.CreateDirectory(this.testDirectory);
-
-      this.testFilePath = Path.Combine(this.testDirectory, "TestFile.dat");
     }
 
     #region Write
@@ -43,9 +38,6 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Write_Calls_SerialisationProvider_Serialize()
     {
       // Arrange
-      this.fileAccessProvider
-        .Setup(f => f.GetPhysicalPath())
-        .Returns(Task.FromResult(this.testFilePath));
       var obj = new TestObject();
 
       // Act
@@ -60,9 +52,6 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Write_Calls_FileProvider_Write()
     {
       // Arrange
-      this.fileAccessProvider
-        .Setup(f => f.GetPhysicalPath())
-        .Returns(Task.FromResult(this.testFilePath));
       var obj = new TestObject();
 
       // Act
@@ -77,9 +66,6 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Write_Calls_CryptoProvider_Crypt()
     {
       // Arrange
-      this.fileAccessProvider
-        .Setup(f => f.GetPhysicalPath())
-        .Returns(Task.FromResult(this.testFilePath));
       var obj = new TestObject();
 
       // Act
@@ -94,9 +80,6 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Write_Does_Not_Call_CryptoProvider_Encrypt_If_Provider_Is_Null()
     {
       // Arrange
-      this.fileAccessProvider
-        .Setup(f => f.GetPhysicalPath())
-        .Returns(Task.FromResult(this.testFilePath));
       var storage = new Storage<TestObject>(
         this.serialisationProvider.Object,
         this.fileAccessProvider.Object);
@@ -116,12 +99,6 @@ namespace Olo42.SerializingFileStorage.Tests
     [Test]
     public void Read_Calls_SerialisationProvider_Deserialize()
     {
-      // Arrange
-      this.fileAccessProvider
-        .Setup(f => f.GetPhysicalPath())
-        .Returns(Task.FromResult(this.testFilePath));
-      var obj = new TestObject();
-
       // Act
       this.storage.Read().Wait();
 
@@ -133,12 +110,6 @@ namespace Olo42.SerializingFileStorage.Tests
     [Test]
     public void Read_Calls_FileProvider_Read()
     {
-      // Arrange
-      this.fileAccessProvider
-        .Setup(f => f.GetPhysicalPath())
-        .Returns(Task.FromResult(this.testFilePath));
-      var obj = new TestObject();
-
       // Act
       this.storage.Read().Wait();
 
@@ -150,12 +121,6 @@ namespace Olo42.SerializingFileStorage.Tests
     [Test]
     public void Read_Calls_CryploProvider_Decrypt()
     {
-      // Arrange
-      this.fileAccessProvider
-        .Setup(f => f.GetPhysicalPath())
-        .Returns(Task.FromResult(this.testFilePath));
-      var obj = new TestObject();
-
       // Act
       this.storage.Read().Wait();
 
@@ -168,14 +133,9 @@ namespace Olo42.SerializingFileStorage.Tests
     public void Read_Does_Not_Call_CryptoProvider_Encrypt_If_Provider_Is_Null()
     {
       // Arrange
-      this.fileAccessProvider
-        .Setup(f => f.GetPhysicalPath())
-        .Returns(Task.FromResult(this.testFilePath));
       var storage = new Storage<TestObject>(
         this.serialisationProvider.Object,
         this.fileAccessProvider.Object);
-
-      var obj = new TestObject();
 
       // Act
       storage.Read().Wait();
@@ -185,15 +145,19 @@ namespace Olo42.SerializingFileStorage.Tests
         .Verify(cp => cp.Encrypt(It.IsAny<string>()), Times.Never);
     }
     #endregion
-    
-    [TearDown]
-    public void TearDown()
+
+    #region Delete
+    [Test]
+    public void Delete_Calls_FileAccessProvider_Delete()
     {
-      if (Directory.Exists(this.testDirectory))
-      {
-        Directory.Delete(this.testDirectory, true);
-      }
+      // Act
+      this.storage.Delete().Wait();
+
+      // Assert
+      this.fileAccessProvider
+        .Verify(fa => fa.Delete(), Times.Once);
     }
+    #endregion
   }
 
   public class TestObject
