@@ -5,6 +5,6 @@ namespace Olo42.SerializingFileStorage.Abstractions
 {
   public interface IFileProvider
   {
-    string PhysicalPath { get; }
+    string GetPhysicalPath();
   }
 }
