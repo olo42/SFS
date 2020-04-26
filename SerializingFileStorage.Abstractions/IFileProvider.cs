@@ -8,5 +8,9 @@ namespace Olo42.SerializingFileStorage.Abstractions
   public interface IFileProvider
   {
     Task<string> GetPhysicalPath();
+
+    Task Write(string content);
+
+    Task<string> Read();
   }
 }
