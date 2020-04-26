@@ -6,7 +6,7 @@
     {
       "label": "build",
       "command": "dotnet",
-      "type": "shell",
+      "type": "process",
       "args": [
         "build",
         // Ask dotnet build to generate full paths for file names.
@@ -14,16 +14,16 @@
         // Do not generate summary otherwise it leads to duplicate errors in Problems panel
         "/consoleloggerparameters:NoSummary"
       ],
-      "group": "build",
-      "presentation": {
-        "reveal": "silent"
+      "group": {
+        "kind": "build",
+        "isDefault": true
       },
       "problemMatcher": "$msCompile"
     },
     {
       "label": "test",
       "command": "dotnet",
-      "type": "shell",
+      "type": "process",
       "args": [
         "test",
         // Ask dotnet build to generate full paths for file names.
@@ -31,9 +31,9 @@
         // Do not generate summary otherwise it leads to duplicate errors in Problems panel
         "/consoleloggerparameters:NoSummary"
       ],
-      "group": "test",
-      "presentation": {
-        "reveal": "silent"
+      "group": {
+        "kind": "test",
+        "isDefault": true
       },
       "problemMatcher": "$msCompile"
     }
