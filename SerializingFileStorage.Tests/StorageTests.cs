@@ -112,6 +112,80 @@ namespace Olo42.SerializingFileStorage.Tests
     }
     #endregion
 
+    #region Read
+    [Test]
+    public void Read_Calls_SerialisationProvider_Deserialize()
+    {
+      // Arrange
+      this.fileProvider
+        .Setup(f => f.GetPhysicalPath())
+        .Returns(Task.FromResult(this.testFilePath));
+      var obj = new TestObject();
+
+      // Act
+      this.storage.Read().Wait();
+
+      // Assert
+      this.serialisationProvider
+        .Verify(f => f.Deserialize(It.IsAny<string>()), Times.Once);
+    }
+
+    [Test]
+    public void Read_Calls_FileProvider_Read()
+    {
+      // Arrange
+      this.fileProvider
+        .Setup(f => f.GetPhysicalPath())
+        .Returns(Task.FromResult(this.testFilePath));
+      var obj = new TestObject();
+
+      // Act
+      this.storage.Read().Wait();
+
+      // Assert
+      this.fileProvider
+        .Verify(f => f.Read(), Times.Once);
+    }
+
+    [Test]
+    public void Read_Calls_CryploProvider_Decrypt()
+    {
+      // Arrange
+      this.fileProvider
+        .Setup(f => f.GetPhysicalPath())
+        .Returns(Task.FromResult(this.testFilePath));
+      var obj = new TestObject();
+
+      // Act
+      this.storage.Read().Wait();
+
+      // Assert
+      this.cryptoProvider
+        .Verify(cp => cp.Decrypt(It.IsAny<string>()), Times.Once);
+    }
+
+    [Test]
+    public void Read_Does_Not_Call_CryptoProvider_Encrypt_If_Provider_Is_Null()
+    {
+      // Arrange
+      this.fileProvider
+        .Setup(f => f.GetPhysicalPath())
+        .Returns(Task.FromResult(this.testFilePath));
+      var storage = new Storage<TestObject>(
+        this.serialisationProvider.Object,
+        this.fileProvider.Object);
+
+      var obj = new TestObject();
+
+      // Act
+      storage.Read().Wait();
+
+      // Assert
+      this.cryptoProvider
+        .Verify(cp => cp.Encrypt(It.IsAny<string>()), Times.Never);
+    }
+    #endregion
+    
     [TearDown]
     public void TearDown()
     {

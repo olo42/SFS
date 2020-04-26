@@ -28,17 +28,21 @@ namespace Olo42.SerializingFileStorage
       this.cryptoProvider = cryptoProvider;
     }
 
-    public Task<T> Read()
+    public async Task<T> Read()
     {
-      return this.serialisationProvider.Deserialize("test");
+      var fileContent = await this.fileProvider.Read();
+      if (this.cryptoProvider != null)
+      {
+        fileContent = await this.cryptoProvider.Decrypt(fileContent);
+      }
 
-
+      return await this.serialisationProvider.Deserialize(fileContent);
     }
 
     public async Task Write(T obj)
     {
       var objString = await this.serialisationProvider.Serialize(obj);
-      if(this.cryptoProvider != null)
+      if (this.cryptoProvider != null)
       {
         objString = await this.cryptoProvider.Encrypt(objString);
       }
