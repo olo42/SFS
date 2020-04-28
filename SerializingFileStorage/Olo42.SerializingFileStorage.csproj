@@ -6,7 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="3.1.3" />
-    <PackageReference Include="Olo42.SerializingFileStorage.Abstractions" Version="2.0.0-beta7" />
+    <PackageReference Include="Olo42.SerializingFileStorage.Abstractions" Version="2.0.0-beta8" />
+    <PackageReference Include="Olo42.SerializingFileStorage.CryptoProvider.Abstractions" Version="1.0.0-beta1" />
+    <PackageReference Include="Olo42.SerializingFileStorage.FileAccessProvider.Abstractions" Version="1.0.0-beta1" />
+    <PackageReference Include="Olo42.SerializingFileStorage.SerialisationProvider.Abstractions" Version="1.0.0-beta1" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,10 @@
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
-    <PackageReference Include="Olo42.SerializingFileStorage.Abstractions" Version="2.0.0-beta7" />
+    <PackageReference Include="Olo42.SerializingFileStorage.Abstractions" Version="2.0.0-beta8" />
+    <PackageReference Include="Olo42.SerializingFileStorage.CryptoProvider.Abstractions" Version="1.0.0-beta1" />
+    <PackageReference Include="Olo42.SerializingFileStorage.FileAccessProvider.Abstractions" Version="1.0.0-beta1" />
+    <PackageReference Include="Olo42.SerializingFileStorage.SerialisationProvider.Abstractions" Version="1.0.0-beta1" />
   </ItemGroup>
 
   <ItemGroup>

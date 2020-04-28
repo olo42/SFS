@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage", "SerializingFileStorage\Olo42.SerializingFileStorage.csproj", "{4259613A-42F6-40EA-A750-5832334D6E48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.CryptoProvider.Abstractions", "SerializingFileStorage.CryptoProvider.Abstractions\Olo42.SerializingFileStorage.CryptoProvider.Abstractions.csproj", "{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.FileAccessProvider.Abstractions", "SerializingFileStorage.FileAccessProvider.Abstractions\Olo42.SerializingFileStorage.FileAccessProvider.Abstractions.csproj", "{3ABA50FB-F9CC-4620-B10F-233C499630B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.SerialisationProvider.Abstractions", "SerializingFileStorage.SerialisationProvider.Abstractions\Olo42.SerializingFileStorage.SerialisationProvider.Abstractions.csproj", "{CA34D37E-D672-47A4-8056-D7C1C36D1E80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +64,41 @@ Global
 		{4259613A-42F6-40EA-A750-5832334D6E48}.Release|x64.Build.0 = Release|Any CPU
 		{4259613A-42F6-40EA-A750-5832334D6E48}.Release|x86.ActiveCfg = Release|Any CPU
 		{4259613A-42F6-40EA-A750-5832334D6E48}.Release|x86.Build.0 = Release|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Debug|x64.Build.0 = Debug|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Debug|x86.Build.0 = Debug|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Release|x64.ActiveCfg = Release|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Release|x64.Build.0 = Release|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Release|x86.ActiveCfg = Release|Any CPU
+		{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}.Release|x86.Build.0 = Release|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Debug|x64.Build.0 = Debug|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Debug|x86.Build.0 = Debug|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Release|x64.ActiveCfg = Release|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Release|x64.Build.0 = Release|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Release|x86.ActiveCfg = Release|Any CPU
+		{3ABA50FB-F9CC-4620-B10F-233C499630B7}.Release|x86.Build.0 = Release|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Debug|x64.Build.0 = Debug|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Debug|x86.Build.0 = Debug|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Release|x64.ActiveCfg = Release|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Release|x64.Build.0 = Release|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Release|x86.ActiveCfg = Release|Any CPU
+		{CA34D37E-D672-47A4-8056-D7C1C36D1E80}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
