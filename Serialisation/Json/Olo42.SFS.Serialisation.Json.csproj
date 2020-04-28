@@ -14,6 +14,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Olo42.SFS.Serialisation.Abstractions" Version="1.0.0" />
+    <PackageReference Include="Olo42.SFS.Serialisation.Abstractions" Version="1.0.1" />
   </ItemGroup>
 </Project>
