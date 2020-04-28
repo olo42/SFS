@@ -4,6 +4,9 @@
 using System;
 using System.Threading.Tasks;
 using Olo42.SerializingFileStorage.Abstractions;
+using Olo42.SerializingFileStorage.CryptoProvider.Abstractions;
+using Olo42.SerializingFileStorage.FileAccessProvider.Abstractions;
+using Olo42.SerializingFileStorage.SerialisationProvider.Abstractions;
 
 namespace Olo42.SerializingFileStorage
 {

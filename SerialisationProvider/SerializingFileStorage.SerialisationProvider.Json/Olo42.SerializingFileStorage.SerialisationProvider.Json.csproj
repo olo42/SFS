@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Olo42.SerializingFileStorage.SerialisationProvider.Abstractions" Version="1.0.0-beta2"/>
+  </ItemGroup>
 </Project>

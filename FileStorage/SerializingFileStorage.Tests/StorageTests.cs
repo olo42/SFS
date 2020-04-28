@@ -1,11 +1,12 @@
 // Copyright (c) Oliver Appel. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using System.IO;
-using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using Olo42.SerializingFileStorage.Abstractions;
+using Olo42.SerializingFileStorage.CryptoProvider.Abstractions;
+using Olo42.SerializingFileStorage.FileAccessProvider.Abstractions;
+using Olo42.SerializingFileStorage.SerialisationProvider.Abstractions;
 
 namespace Olo42.SerializingFileStorage.Tests
 {
