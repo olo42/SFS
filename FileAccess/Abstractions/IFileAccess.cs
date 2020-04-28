@@ -3,9 +3,9 @@
 
 using System.Threading.Tasks;
 
-namespace Olo42.SerializingFileStorage.FileAccessProvider.Abstractions
+namespace Olo42.SFS.FileAccess.Abstractions
 {
-  public interface IFileAccessProvider
+  public interface IFileAccess
   {
     Task<string> GetPhysicalPath();
 

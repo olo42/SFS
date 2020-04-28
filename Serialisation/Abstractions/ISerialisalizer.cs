@@ -3,11 +3,11 @@
 
 using System.Threading.Tasks;
 
-namespace Olo42.SerializingFileStorage.CryptoProvider.Abstractions
+namespace Olo42.SFS.Serialisation.Abstractions
 {
-  public interface ICryptoProvider
+  public interface ISerialisalizer<T>
   {
-    Task<string> Decrypt(string str);
-    Task<string> Encrypt(string str);
+    Task<T> Deserialize(string serializedObject);
+    Task<string> Serialize(T obj);
   }
 }

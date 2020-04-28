@@ -2,9 +2,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using NUnit.Framework;
-using Olo42.SerializingFileStorage.SerialisationProvider.Json;
+using Olo42.SFS.Serialisation.Json;
 
-namespace SerializingFileStorage.SerialisationProvider.Json.Tests
+namespace SerializingFileStorage.Serialisation.Json.Tests
 {
   public class JsonSerializerTests
   {

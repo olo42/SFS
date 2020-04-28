@@ -2,17 +2,18 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+  
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>Oliver Appel (olo@apck.de)</Authors>
-    <Description>SerializingFileStorage Abstractions</Description>
+    <Description>Serializing File Storage (SFS) Serialization Abstractions</Description>
     <Copyright>Oliver Appel</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/olo42/SerializingFileStorage.git</RepositoryUrl>
     <RepositoryType>Git Repo</RepositoryType>
     <Version>1.0.0</Version>
   </PropertyGroup>
+  
   <ItemGroup>
-    <PackageReference Include="Olo42.SerializingFileStorage.SerialisationProvider.Abstractions" Version="1.0.0"/>
+    <PackageReference Include="Olo42.SFS.Serialisation.Abstractions" Version="1.0.0" />
   </ItemGroup>
 </Project>

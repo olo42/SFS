@@ -3,11 +3,11 @@
 
 using System.Text.Json;
 using System.Threading.Tasks;
-using Olo42.SerializingFileStorage.SerialisationProvider.Abstractions;
+using Olo42.SFS.Serialisation.Abstractions;
 
-namespace Olo42.SerializingFileStorage.SerialisationProvider.Json
+namespace Olo42.SFS.Serialisation.Json
 {
-  public class JsonSerializer<T> : ISerialisationProvider<T>
+  public class JsonSerializer<T> : ISerialisalizer<T>
   {
     public Task<T> Deserialize(string serializedObject) 
       => Task.FromResult(JsonSerializer.Deserialize<T>(serializedObject));

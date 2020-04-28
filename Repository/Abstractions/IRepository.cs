@@ -3,9 +3,9 @@
 
 using System.Threading.Tasks;
 
-namespace Olo42.SerializingFileStorage.Abstractions
+namespace Olo42.SFS.Repository.Abstractions
 {
-  public interface ISerializingFileStorage<T>
+  public interface IRepository<T>
   {
     Task Write(T obj);
 

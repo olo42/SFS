@@ -3,40 +3,39 @@
 
 using Moq;
 using NUnit.Framework;
-using Olo42.SerializingFileStorage.Abstractions;
-using Olo42.SerializingFileStorage.CryptoProvider.Abstractions;
-using Olo42.SerializingFileStorage.FileAccessProvider.Abstractions;
-using Olo42.SerializingFileStorage.SerialisationProvider.Abstractions;
+using Olo42.SFS.Crypto.Abstractions;
+using Olo42.SFS.FileAccess.Abstractions;
+using Olo42.SFS.Serialisation.Abstractions;
 
-namespace Olo42.SerializingFileStorage.Tests
+namespace Olo42.SFS.Repository.Tests
 {
-  public class StorageTests
+  public class RepositoryTests
   {
     #region Fields
-    Mock<ISerialisationProvider<TestObject>> serialisationProvider;
-    Mock<IFileAccessProvider> fileAccessProvider;
-    Mock<ICryptoProvider> cryptoProvider;
-    Storage<TestObject> storage;
+    Mock<ISerialisalizer<TestObject>> serialisalizer;
+    Mock<IFileAccess> fileAccess;
+    Mock<ICrypto> crypto;
+    Repository<TestObject> storage;
     #endregion
 
     [SetUp]
     public void Setup()
     {
-      this.serialisationProvider = new Mock<ISerialisationProvider<TestObject>>();
+      this.serialisalizer = new Mock<ISerialisalizer<TestObject>>();
 
-      this.fileAccessProvider = new Mock<IFileAccessProvider>();
+      this.fileAccess = new Mock<IFileAccess>();
 
-      this.cryptoProvider = new Mock<ICryptoProvider>();
+      this.crypto = new Mock<ICrypto>();
 
-      this.storage = new Storage<TestObject>(
-        this.serialisationProvider.Object,
-        this.fileAccessProvider.Object,
-        this.cryptoProvider.Object);
+      this.storage = new Repository<TestObject>(
+        this.serialisalizer.Object,
+        this.fileAccess.Object,
+        this.crypto.Object);
     }
 
     #region Write
     [Test]
-    public void Write_Calls_SerialisationProvider_Serialize()
+    public void Write_Calls_Serialisalizer_Serialize()
     {
       // Arrange
       var obj = new TestObject();
@@ -45,12 +44,12 @@ namespace Olo42.SerializingFileStorage.Tests
       this.storage.Write(obj).Wait();
 
       // Assert
-      this.serialisationProvider
+      this.serialisalizer
         .Verify(f => f.Serialize(obj), Times.Once);
     }
 
     [Test]
-    public void Write_Calls_FileProvider_Write()
+    public void Write_Calls_FileAccess_Write()
     {
       // Arrange
       var obj = new TestObject();
@@ -59,12 +58,12 @@ namespace Olo42.SerializingFileStorage.Tests
       this.storage.Write(obj).Wait();
 
       // Assert
-      this.fileAccessProvider
+      this.fileAccess
         .Verify(fp => fp.Write(It.IsAny<string>()), Times.Once);
     }
 
     [Test]
-    public void Write_Calls_CryptoProvider_Crypt()
+    public void Write_Calls_Crypto_Enrypt()
     {
       // Arrange
       var obj = new TestObject();
@@ -73,17 +72,17 @@ namespace Olo42.SerializingFileStorage.Tests
       this.storage.Write(obj).Wait();
 
       // Assert
-      this.cryptoProvider
+      this.crypto
         .Verify(cp => cp.Encrypt(It.IsAny<string>()), Times.Once);
     }
 
     [Test]
-    public void Write_Does_Not_Call_CryptoProvider_Encrypt_If_Provider_Is_Null()
+    public void Write_Does_Not_Call_Encrypt_If_Crypto_Is_Null()
     {
       // Arrange
-      var storage = new Storage<TestObject>(
-        this.serialisationProvider.Object,
-        this.fileAccessProvider.Object);
+      var storage = new Repository<TestObject>(
+        this.serialisalizer.Object,
+        this.fileAccess.Object);
 
       var obj = new TestObject();
 
@@ -91,71 +90,71 @@ namespace Olo42.SerializingFileStorage.Tests
       storage.Write(obj).Wait();
 
       // Assert
-      this.cryptoProvider
+      this.crypto
         .Verify(cp => cp.Encrypt(It.IsAny<string>()), Times.Never);
     }
     #endregion
 
     #region Read
     [Test]
-    public void Read_Calls_SerialisationProvider_Deserialize()
+    public void Read_Calls_Serializer_Deserialize()
     {
       // Act
       this.storage.Read().Wait();
 
       // Assert
-      this.serialisationProvider
+      this.serialisalizer
         .Verify(f => f.Deserialize(It.IsAny<string>()), Times.Once);
     }
 
     [Test]
-    public void Read_Calls_FileProvider_Read()
+    public void Read_Calls_FileAccess_Read()
     {
       // Act
       this.storage.Read().Wait();
 
       // Assert
-      this.fileAccessProvider
+      this.fileAccess
         .Verify(f => f.Read(), Times.Once);
     }
 
     [Test]
-    public void Read_Calls_CryploProvider_Decrypt()
+    public void Read_Calls_Crypto_Decrypt()
     {
       // Act
       this.storage.Read().Wait();
 
       // Assert
-      this.cryptoProvider
+      this.crypto
         .Verify(cp => cp.Decrypt(It.IsAny<string>()), Times.Once);
     }
 
     [Test]
-    public void Read_Does_Not_Call_CryptoProvider_Encrypt_If_Provider_Is_Null()
+    public void Read_Does_Not_Call_Encrypt_If_Crypto_Is_Null()
     {
       // Arrange
-      var storage = new Storage<TestObject>(
-        this.serialisationProvider.Object,
-        this.fileAccessProvider.Object);
+      var storage = new Repository<TestObject>(
+        this.serialisalizer.Object,
+        this.fileAccess.Object);
 
       // Act
       storage.Read().Wait();
 
       // Assert
-      this.cryptoProvider
+      this.crypto
         .Verify(cp => cp.Encrypt(It.IsAny<string>()), Times.Never);
     }
     #endregion
 
     #region Delete
     [Test]
-    public void Delete_Calls_FileAccessProvider_Delete()
+    public void Delete_Calls_FileAccess_Delete()
     {
       // Act
       this.storage.Delete().Wait();
 
       // Assert
-      this.fileAccessProvider
+      this.fileAccess
         .Verify(fa => fa.Delete(), Times.Once);
     }
     #endregion
