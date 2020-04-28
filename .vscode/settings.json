@@ -3,7 +3,7 @@
     "files.exclude": {
         "**/.editorconfig": true,
         "**/.vscode": true,
-        "**/*.csproj": true,
+        "**/*.csproj": false,
         "**/bin": true,
         "**/obj": true,
         "**/.gitattributes" : true,
