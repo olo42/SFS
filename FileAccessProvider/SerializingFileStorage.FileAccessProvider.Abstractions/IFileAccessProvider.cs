@@ -3,7 +3,7 @@
 
 using System.Threading.Tasks;
 
-namespace Olo42.SerializingFileStorage.Abstractions
+namespace Olo42.SerializingFileStorage.FileAccessProvider.Abstractions
 {
   public interface IFileAccessProvider
   {

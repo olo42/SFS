@@ -3,7 +3,7 @@
 
 using System.Threading.Tasks;
 
-namespace Olo42.SerializingFileStorage.Abstractions
+namespace Olo42.SerializingFileStorage.CryptoProvider.Abstractions
 {
   public interface ICryptoProvider
   {
