@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializingFileStorage.Abstractions", "SerializingFileStorage.Abstractions\Olo42.SerializingFileStorage.Abstractions.csproj", "{2BF6873C-0C41-4B5C-83CE-34D12431E6DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializingFileStorage.Abstractions", "FileStorage\SerializingFileStorage.Abstractions\Olo42.SerializingFileStorage.Abstractions.csproj", "{2BF6873C-0C41-4B5C-83CE-34D12431E6DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.Tests", "SerializingFileStorage.Tests\Olo42.SerializingFileStorage.Tests.csproj", "{8E4C1FE7-56B4-4A73-AEFC-7DC50EF1591F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.Tests", "FileStorage\SerializingFileStorage.Tests\Olo42.SerializingFileStorage.Tests.csproj", "{8E4C1FE7-56B4-4A73-AEFC-7DC50EF1591F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage", "SerializingFileStorage\Olo42.SerializingFileStorage.csproj", "{4259613A-42F6-40EA-A750-5832334D6E48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage", "FileStorage\SerializingFileStorage\Olo42.SerializingFileStorage.csproj", "{4259613A-42F6-40EA-A750-5832334D6E48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.CryptoProvider.Abstractions", "SerializingFileStorage.CryptoProvider.Abstractions\Olo42.SerializingFileStorage.CryptoProvider.Abstractions.csproj", "{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.CryptoProvider.Abstractions", "CryptoProvider\SerializingFileStorage.CryptoProvider.Abstractions\Olo42.SerializingFileStorage.CryptoProvider.Abstractions.csproj", "{1229CAB5-0201-4670-B2CF-EC4F3339B8AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.FileAccessProvider.Abstractions", "SerializingFileStorage.FileAccessProvider.Abstractions\Olo42.SerializingFileStorage.FileAccessProvider.Abstractions.csproj", "{3ABA50FB-F9CC-4620-B10F-233C499630B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.FileAccessProvider.Abstractions", "FileAccessProvider\SerializingFileStorage.FileAccessProvider.Abstractions\Olo42.SerializingFileStorage.FileAccessProvider.Abstractions.csproj", "{3ABA50FB-F9CC-4620-B10F-233C499630B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.SerialisationProvider.Abstractions", "SerializingFileStorage.SerialisationProvider.Abstractions\Olo42.SerializingFileStorage.SerialisationProvider.Abstractions.csproj", "{CA34D37E-D672-47A4-8056-D7C1C36D1E80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olo42.SerializingFileStorage.SerialisationProvider.Abstractions", "SerialisationProvider\SerializingFileStorage.SerialisationProvider.Abstractions\Olo42.SerializingFileStorage.SerialisationProvider.Abstractions.csproj", "{CA34D37E-D672-47A4-8056-D7C1C36D1E80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
