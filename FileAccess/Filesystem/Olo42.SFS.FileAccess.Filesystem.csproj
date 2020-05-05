@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Olo42.SFS.Serialisation.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Olo42.SFS.FileAccess.Abstractions" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

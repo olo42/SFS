@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Olo42.SFS.FileAccess.Abstractions" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Filesystem\Olo42.SFS.FileAccess.Filesystem.csproj" />
   </ItemGroup>
 
