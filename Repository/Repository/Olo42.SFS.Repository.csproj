@@ -8,4 +8,7 @@
     <PackageReference Include="Olo42.SFS.FileAccess.Abstractions" Version="2.0.0" />
     <PackageReference Include="Olo42.SFS.Serialisation.Abstractions" Version="1.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Abstractions\Olo42.SFS.Repository.Abstractions.csproj" />
+  </ItemGroup>
 </Project>

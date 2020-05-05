@@ -1,6 +1,8 @@
 // Copyright (c) Oliver Appel. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using System;
+using System.IO;
 using Moq;
 using NUnit.Framework;
 using Olo42.SFS.Crypto.Abstractions;
@@ -16,6 +18,7 @@ namespace Olo42.SFS.Repository.Tests
     Mock<IFileAccess> fileAccess;
     Mock<ICrypto> crypto;
     Repository<TestObject> storage;
+    private Uri uri;
     #endregion
 
     [SetUp]
@@ -31,6 +34,11 @@ namespace Olo42.SFS.Repository.Tests
         this.serialisalizer.Object,
         this.fileAccess.Object,
         this.crypto.Object);
+
+      this.uri = new Uri(Path.Combine(
+        Path.GetTempPath(),
+        "SFSTestdir",
+        "testfile.dat"));
     }
 
     #region Write
@@ -41,7 +49,7 @@ namespace Olo42.SFS.Repository.Tests
       var obj = new TestObject();
 
       // Act
-      this.storage.Write(obj).Wait();
+      this.storage.Write(this.uri, obj).Wait();
 
       // Assert
       this.serialisalizer
@@ -55,11 +63,12 @@ namespace Olo42.SFS.Repository.Tests
       var obj = new TestObject();
 
       // Act
-      this.storage.Write(obj).Wait();
+      this.storage.Write(this.uri, obj).Wait();
 
       // Assert
       this.fileAccess
-        .Verify(fp => fp.Write(It.IsAny<string>()), Times.Once);
+        .Verify(
+          fp => fp.Write(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
     }
 
     [Test]
@@ -69,7 +78,7 @@ namespace Olo42.SFS.Repository.Tests
       var obj = new TestObject();
 
       // Act
-      this.storage.Write(obj).Wait();
+      this.storage.Write(this.uri, obj).Wait();
 
       // Assert
       this.crypto
@@ -87,7 +96,7 @@ namespace Olo42.SFS.Repository.Tests
       var obj = new TestObject();
 
       // Act
-      storage.Write(obj).Wait();
+      storage.Write(this.uri, obj).Wait();
 
       // Assert
       this.crypto
@@ -100,7 +109,7 @@ namespace Olo42.SFS.Repository.Tests
     public void Read_Calls_Serializer_Deserialize()
     {
       // Act
-      this.storage.Read().Wait();
+      this.storage.Read(this.uri).Wait();
 
       // Assert
       this.serialisalizer
@@ -111,18 +120,18 @@ namespace Olo42.SFS.Repository.Tests
     public void Read_Calls_FileAccess_Read()
     {
       // Act
-      this.storage.Read().Wait();
+      this.storage.Read(this.uri).Wait();
 
       // Assert
       this.fileAccess
-        .Verify(f => f.Read(), Times.Once);
+        .Verify(f => f.Read(this.uri.AbsolutePath), Times.Once);
     }
 
     [Test]
     public void Read_Calls_Crypto_Decrypt()
     {
       // Act
-      this.storage.Read().Wait();
+      this.storage.Read(this.uri).Wait();
 
       // Assert
       this.crypto
@@ -138,7 +147,7 @@ namespace Olo42.SFS.Repository.Tests
         this.fileAccess.Object);
 
       // Act
-      storage.Read().Wait();
+      storage.Read(this.uri).Wait();
 
       // Assert
       this.crypto
@@ -151,11 +160,11 @@ namespace Olo42.SFS.Repository.Tests
     public void Delete_Calls_FileAccess_Delete()
     {
       // Act
-      this.storage.Delete().Wait();
+      this.storage.Delete(this.uri).Wait();
 
       // Assert
       this.fileAccess
-        .Verify(fa => fa.Delete(), Times.Once);
+        .Verify(fa => fa.Delete(this.uri.AbsolutePath), Times.Once);
     }
     #endregion
   }

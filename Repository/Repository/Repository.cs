@@ -5,11 +5,12 @@ using System;
 using System.Threading.Tasks;
 using Olo42.SFS.Crypto.Abstractions;
 using Olo42.SFS.FileAccess.Abstractions;
+using Olo42.SFS.Repository.Abstractions;
 using Olo42.SFS.Serialisation.Abstractions;
 
 namespace Olo42.SFS.Repository
 {
-  public class Repository<T>
+  public class Repository<T> : IRepository<T>
   {
     private readonly ISerialisalizer<T> serializer;
     private readonly IFileAccess fileAccess;
@@ -33,9 +34,9 @@ namespace Olo42.SFS.Repository
 
     public bool IsCryptoEnabled => this.crypto != null;
 
-    public async Task<T> Read()
+    public async Task<T> Read(Uri uri)
     {
-      var fileContent = await this.fileAccess.Read();
+      var fileContent = await this.fileAccess.Read(uri.AbsolutePath);
       if (this.IsCryptoEnabled)
       {
         fileContent = await this.crypto.Decrypt(fileContent);
@@ -44,7 +45,7 @@ namespace Olo42.SFS.Repository
       return await this.serializer.Deserialize(fileContent);
     }
 
-    public async Task Write(T obj)
+    public async Task Write(Uri uri, T obj)
     {
       var objString = await this.serializer.Serialize(obj);
       if (this.IsCryptoEnabled)
@@ -52,12 +53,12 @@ namespace Olo42.SFS.Repository
         objString = await this.crypto.Encrypt(objString);
       }
 
-      await this.fileAccess.Write(objString);
+      await this.fileAccess.Write(uri.AbsolutePath, objString);
     }
 
-    public Task Delete()
+    public Task Delete(Uri uri)
     {
-      return this.fileAccess.Delete();
+      return this.fileAccess.Delete(uri.AbsolutePath);
     }
   }
 }
