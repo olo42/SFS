@@ -7,12 +7,10 @@ namespace Olo42.SFS.FileAccess.Abstractions
 {
   public interface IFileAccess
   {
-    Task<string> GetPhysicalPath();
+    Task Write(string path, string content);
 
-    Task Write(string content);
+    Task<string> Read(string path);
 
-    Task<string> Read();
-
-    Task Delete();
+    Task Delete(string path);
   }
 }

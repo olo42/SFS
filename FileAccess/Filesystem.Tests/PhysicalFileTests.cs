@@ -21,15 +21,14 @@ namespace Olo42.SFS.FileAccess.Filesystem.Tests
         "testfile.dat");
     }
 
-    #region Write
     [Test]
     public void Write_Creates_Directory_and_rFile_If_Not_Exist()
     {
       // Arrange
-      PhysicalFile file = new PhysicalFile(filePath);
+      PhysicalFile file = new PhysicalFile();
 
       // Act
-      file.Write("Some text");
+      file.Write(this.filePath, "Some text");
 
       // Assert
       Assert.That(File.Exists(this.filePath), Is.True);
@@ -39,24 +38,63 @@ namespace Olo42.SFS.FileAccess.Filesystem.Tests
     public void Write_Writes_Content_To_File()
     {
       // Arrange
-      PhysicalFile file = new PhysicalFile(filePath);
+      PhysicalFile file = new PhysicalFile();
 
       // Act
-      file.Write("Some text").Wait();
+      file.Write(this.filePath, "Some text").Wait();
       var contentResult = File.ReadAllText(this.filePath);
 
       // Assert
       Assert.That(contentResult, Is.EqualTo("Some text"));
     }
-    #endregion
-    
+
+    [Test]
+    public void Read_Reads_Content_From_File()
+    {
+      // Arrange
+      PhysicalFile file = new PhysicalFile();
+      this.CreateDirectoryIfNotExists();
+      File.WriteAllText(this.filePath, "Some content");
+
+      // Act
+      var contentResult = file.Read(this.filePath).Result;
+
+      // Assert
+      Assert.That(contentResult, Is.EqualTo("Some content"));
+    }
+
+    [Test]
+    public void Delete_Deletes_File()
+    {
+      // Arrange
+      PhysicalFile file = new PhysicalFile();
+      this.CreateDirectoryIfNotExists();
+      File.Create(this.filePath);
+
+      // Act
+      file.Delete(this.filePath);
+
+      // Assert
+      Assert.That(File.Exists(this.filePath), Is.False);
+    }
+
+
     [TearDown]
     public void TearDown()
     {
       var dir = Path.GetDirectoryName(this.filePath);
-      if(Directory.Exists(dir))
+      if (Directory.Exists(dir))
       {
         Directory.Delete(dir, true);
+      }
+    }
+
+    private void CreateDirectoryIfNotExists()
+    {
+      var dir = Path.GetDirectoryName(this.filePath);
+      if (!Directory.Exists(dir))
+      {
+        Directory.CreateDirectory(dir);
       }
     }
   }

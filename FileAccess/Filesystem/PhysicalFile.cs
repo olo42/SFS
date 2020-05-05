@@ -9,38 +9,28 @@ namespace Olo42.SFS.FileAccess.Filesystem
 {
   public class PhysicalFile : IFileAccess
   {
-    private string filePath;
-
-    public PhysicalFile(string filePath)
+    public Task Delete(string path)
     {
-      this.filePath = filePath;
+      File.Delete(path);
+
+      return Task.CompletedTask; 
     }
 
-    public Task Delete()
+    public Task<string> Read(string path)
     {
-      throw new System.NotImplementedException();
+      return File.ReadAllTextAsync(path);
     }
 
-    public Task<string> GetPhysicalPath()
+    public Task Write(string path, string content)
     {
-      return Task.FromResult(this.filePath);
+      this.CreateDirectoryIfNotExists(path);
+
+      return File.WriteAllTextAsync(path, content);
     }
 
-    public Task<string> Read()
+    private void CreateDirectoryIfNotExists(string path)
     {
-      throw new System.NotImplementedException();
-    }
-
-    public Task Write(string content)
-    {
-      this.CreateDirectoryIfNotExists();
-
-      return File.WriteAllTextAsync(this.filePath, content);
-    }
-
-    private void CreateDirectoryIfNotExists()
-    {
-      var dir = Path.GetDirectoryName(this.filePath);
+      var dir = Path.GetDirectoryName(path);
       if (!Directory.Exists(dir))
       {
         Directory.CreateDirectory(dir);
