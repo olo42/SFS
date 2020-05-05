@@ -5,7 +5,7 @@
   
   <PropertyGroup>
     <Authors>Oliver Appel (olo@apck.de)</Authors>
-    <Description>Serializing File Storage (SFS) Serialization Abstractions</Description>
+    <Description>Serializing File Storage (SFS) Serialization Json Implementation</Description>
     <Copyright>Oliver Appel</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/olo42/SerializingFileStorage.git</RepositoryUrl>

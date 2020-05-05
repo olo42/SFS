@@ -11,6 +11,7 @@
     <PackageReference Include="Olo42.SFS.Crypto.Abstractions" Version="1.0.1" />
     <PackageReference Include="Olo42.SFS.FileAccess.Abstractions" Version="2.0.0" />
     <PackageReference Include="Olo42.SFS.Serialisation.Abstractions" Version="1.0.1" />
+    <PackageReference Include="Olo42.SFS.Repository.Abstractions" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Repository\Olo42.SFS.Repository.csproj" />

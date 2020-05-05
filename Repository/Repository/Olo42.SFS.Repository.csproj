@@ -2,13 +2,22 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Oliver Appel (olo@apck.de)</Authors>
+    <Description>Serializing File Storage (SFS) Repository Implementation</Description>
+    <Copyright>Oliver Appel</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/olo42/SFS.git</RepositoryUrl>
+    <RepositoryType>Git Repo</RepositoryType>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="3.1.3" />
     <PackageReference Include="Olo42.SFS.Crypto.Abstractions" Version="1.0.1" />
     <PackageReference Include="Olo42.SFS.FileAccess.Abstractions" Version="2.0.0" />
     <PackageReference Include="Olo42.SFS.Serialisation.Abstractions" Version="1.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Abstractions\Olo42.SFS.Repository.Abstractions.csproj" />
+    <PackageReference Include="Olo42.SFS.Repository.Abstractions" Version="2.0.0" />
   </ItemGroup>
 </Project>

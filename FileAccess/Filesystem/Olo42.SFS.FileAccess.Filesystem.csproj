@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <Authors>Oliver Appel (olo@apck.de)</Authors>
+    <Description>Serializing File Storage (SFS) FileAccess Filesystem Implementation</Description>
+    <Copyright>Oliver Appel</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/olo42/SFS.git</RepositoryUrl>
+    <RepositoryType>Git Repo</RepositoryType>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Olo42.SFS.FileAccess.Abstractions" Version="2.0.0" />
